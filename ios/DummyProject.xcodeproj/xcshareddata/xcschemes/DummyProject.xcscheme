@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "DummyProject.app"
-               BlueprintName = "DummyProject"
-               ReferencedContainer = "container:DummyProject.xcodeproj">
+               BuildableName = "DoCommons.app"
+               BlueprintName = "DoCommons"
+               ReferencedContainer = "container:DoCommons.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "DummyProjectTests.xctest"
-               BlueprintName = "DummyProjectTests"
-               ReferencedContainer = "container:DummyProject.xcodeproj">
+               BuildableName = "DoCommonsTests.xctest"
+               BlueprintName = "DoCommonsTests"
+               ReferencedContainer = "container:DoCommons.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "DummyProject.app"
-            BlueprintName = "DummyProject"
-            ReferencedContainer = "container:DummyProject.xcodeproj">
+            BuildableName = "DoCommons.app"
+            BlueprintName = "DoCommons"
+            ReferencedContainer = "container:DoCommons.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "DummyProject.app"
-            BlueprintName = "DummyProject"
-            ReferencedContainer = "container:DummyProject.xcodeproj">
+            BuildableName = "DoCommons.app"
+            BlueprintName = "DoCommons"
+            ReferencedContainer = "container:DoCommons.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
