@@ -1,44 +1,31 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet, GestureResponderEvent, ViewStyle, TextStyle } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, TouchableOpacityProps } from 'react-native';
 
-
-interface ButtonProps {
+interface MyButtonProps extends TouchableOpacityProps {
   title: string;
-  onPress: (event: GestureResponderEvent) => void;
-  style?: ViewStyle;        
-  textStyle?: TextStyle;   
-  disabled?: boolean;       
 }
 
-// Button component implementation
-const Button: React.FC<ButtonProps> = ({ title, onPress, style, textStyle, disabled }) => {
+const MyButton: React.FC<MyButtonProps> = ({ title, style, ...rest }) => {
   return (
-    <TouchableOpacity
-      style={[styles.button, style, disabled && styles.disabledButton]}
-      onPress={onPress}
-      disabled={disabled}
-    >
-      <Text style={[styles.buttonText, textStyle]}>{title}</Text>
+    <TouchableOpacity style={[styles.button, style]} {...rest}>
+      <Text style={styles.text}>{title}</Text>
     </TouchableOpacity>
   );
 };
 
-// Default styles for the button
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#007bff',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    backgroundColor: '#007AFF',
+    padding: 10,
     borderRadius: 5,
     alignItems: 'center',
+    justifyContent: 'center',
   },
-  buttonText: {
-    color: '#ffffff',
+  text: {
+    color: '#FFFFFF',
     fontSize: 16,
-  },
-  disabledButton: {
-    backgroundColor: '#cccccc',
+    fontWeight: 'bold',
   },
 });
 
-export default Button;
+export default MyButton;
