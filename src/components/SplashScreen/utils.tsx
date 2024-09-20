@@ -1,5 +1,5 @@
- import {ImageSourcePropType,ImageStyle, TextStyle, ViewStyle} from "react-native"
- export interface SplashScreenProps{  
+ import {ImageProps, ImageSourcePropType,ImageStyle, TextStyle, ViewStyle} from "react-native"
+ export interface SplashScreenProps {  
 appIcon:ImageSourcePropType;
 buttonlabel?:string;
 onpress?:()=>void;
