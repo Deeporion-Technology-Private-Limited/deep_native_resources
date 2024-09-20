@@ -1,6 +1,5 @@
 # OSX
 .DS_Store
-
 # Xcode
 build/
 *.pbxuser
@@ -19,7 +18,6 @@ DerivedData
 *.ipa
 *.xcuserstate
 **/.xcode.env.local
-
 # Android/IntelliJ
 build/
 .idea
@@ -30,33 +28,26 @@ local.properties
 .cxx/
 *.keystore
 !debug.keystore
-
 # Node.js
 node_modules/
 npm-debug.log
 yarn-error.log
-#rm -rf lib   
+#rm -rf lib  
 lib
-
 # Metro
 .metro/
-
 # Bundle artifact
 *.jsbundle
-
 # Ruby / CocoaPods
 **/Pods/
 /vendor/bundle/
-
 # Fastlane
 **/fastlane/report.xml
 **/fastlane/Preview.html
 **/fastlane/screenshots
 **/fastlane/test_output
-
 # Testing
 /coverage
-
 # Yarn
 .yarn/*
 !.yarn/patches
@@ -64,14 +55,11 @@ lib
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
-
 # TypeScript
 *.tsbuildinfo
-
 # Miscellaneous
 *.env
 *.env.*.local
-
 # iOS - other
 Pods/
 *.xcworkspace
