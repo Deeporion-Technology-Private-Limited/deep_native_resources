@@ -24,7 +24,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-
+import SplashScreen from './src/components/SplashScreen/SplashScreen';
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
@@ -63,13 +63,15 @@ function App(): React.JSX.Element {
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-    <Text>Heloo</Text>
-    </SafeAreaView>
+    <View style={{flex: 1}}>
+      <SplashScreen
+        appIcon={require('./src/components/SplashScreen/logo1.png')}
+       // onpress={() => console.log('button')}
+        buttonlabel='Get Started'
+        
+        
+        ></SplashScreen>
+    </View>
   );
 }
 
