@@ -19,16 +19,13 @@ const SplashScreen: React.FC<SplashScreenProps> = ({
   textStyle,
   buttonTextStyle,
   buttonStyle,
-  
 }) => {
-  
   return (
     <View style={[styles.container, {backgroundColor: backgroundColor}]}>
       <Image
         source={appIcon}
         resizeMode="contain"
         style={[styles.image, imageStyle]}
-        
       />
       {label && <Text style={[styles.label, textStyle]}>{label}</Text>}
       {buttonlabel && (
@@ -51,7 +48,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding:10
+    padding: 10,
   },
   image: {
     width: 200,

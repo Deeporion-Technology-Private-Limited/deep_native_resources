@@ -61,11 +61,7 @@ function App(): React.JSX.Element {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
-  return (
-    <View style={{flex: 1}}>
-     
-    </View>
-  );
+  return <View style={{flex: 1}} />;
 }
 
 const styles = StyleSheet.create({
