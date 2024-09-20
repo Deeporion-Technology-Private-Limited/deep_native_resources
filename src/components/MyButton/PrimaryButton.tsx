@@ -6,7 +6,7 @@ interface MyButtonProps extends TouchableOpacityProps {
   title: string;
 }
 
-const MyButton: React.FC<MyButtonProps> = ({ title, style, ...rest }) => {
+const PrimaryButton: React.FC<MyButtonProps> = ({ title, style, ...rest }) => {
   return (
     <TouchableOpacity style={[styles.button, style]} {...rest}>
       <Text style={styles.text}>{title}</Text>
@@ -16,4 +16,4 @@ const MyButton: React.FC<MyButtonProps> = ({ title, style, ...rest }) => {
 
 
 
-export default MyButton;
+export default PrimaryButton;
