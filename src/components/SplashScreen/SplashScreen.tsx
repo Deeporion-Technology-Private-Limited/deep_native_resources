@@ -19,18 +19,9 @@ const SplashScreen: React.FC<SplashScreenProps> = ({
   textStyle,
   buttonTextStyle,
   buttonStyle,
-  delayTime = 2000,
+  
 }) => {
-  // navigation to other screen after some time
-
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     Alert.alert('NAVIGATE');
-  //   }, delayTime);
-
-  //   // Cleanup the timer
-  //   return () => clearTimeout(timer);
-  // }, [Alert]);
+  
   return (
     <View style={[styles.container, {backgroundColor: backgroundColor}]}>
       <Image
