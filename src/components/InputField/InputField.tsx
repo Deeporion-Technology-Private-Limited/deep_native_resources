@@ -1,5 +1,6 @@
 import {StyleSheet, Text, View, TextInput, TextInputProps} from 'react-native';
 import React, {useState} from 'react';
+import styles from './style';
 
 interface InputFieldProps extends TextInputProps {
   label?: string;
@@ -43,27 +44,4 @@ const InputField: React.FC<InputFieldProps> = ({
 
 export default InputField;
 
-const styles = StyleSheet.create({
-  container: {
-    marginVertical: 10,
-  },
-  label: {
-    marginBottom: 5,
-    fontSize: 16,
-    color: '#333',
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    padding: 10,
-    borderRadius: 5,
-  },
-  errorInput: {
-    borderColor: 'red',
-  },
-  errorText: {
-    marginTop: 5,
-    color: 'red',
-    fontSize: 12,
-  },
-});
+
