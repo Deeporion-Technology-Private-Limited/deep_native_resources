@@ -1,2 +1,2 @@
-export { default as Input } from './components/Input';
+export { default as MyButton } from './components/MyButton';
 export {default as SplashScreen} from "./components/SplashScreen/SplashScreen"
