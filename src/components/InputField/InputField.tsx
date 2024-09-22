@@ -1,5 +1,5 @@
-import {StyleSheet, Text, View, TextInput, TextInputProps} from 'react-native';
-import React, {useState} from 'react';
+import { Text, View, TextInput, TextInputProps } from 'react-native';
+import React, { useState } from 'react';
 import styles from './style';
 
 interface InputFieldProps extends TextInputProps {
@@ -43,5 +43,3 @@ const InputField: React.FC<InputFieldProps> = ({
 };
 
 export default InputField;
-
-
