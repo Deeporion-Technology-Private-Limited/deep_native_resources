@@ -11,14 +11,7 @@ module.exports = {
     'prettier',
   ],
   parser: '@typescript-eslint/parser',
-  plugins: [
-    '@typescript-eslint',
-    'react',
-    'react-hooks',
-    'react-native',
-    'jest',
-    'prettier',
-  ],
+  plugins: ['@typescript-eslint', 'react', 'react-hooks', 'react-native', 'jest', 'prettier'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -36,9 +29,10 @@ module.exports = {
     'react/prop-types': 'off',
     'react-native/no-inline-styles': 'warn',
     'react-native/no-color-literals': 'warn',
+    'react-native/sort-styles': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'warn',
-    'no-console': ['warn', {allow: ['warn', 'error']}],
+    'no-console': ['warn', { allow: ['warn', 'error'] }],
     // Disable test-related linting
     'jest/no-disabled-tests': 'off',
     'jest/no-focused-tests': 'off',
@@ -55,5 +49,4 @@ module.exports = {
     '**/*config.js',
     '.eslintrc.js',
   ],
-  // ignorePatterns  we can add files which we want to ignore from eslint
 };
