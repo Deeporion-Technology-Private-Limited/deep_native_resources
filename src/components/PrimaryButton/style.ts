@@ -1,16 +1,20 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
+const COLORS = {
+  BUTTON_BACKGROUND: '#007AFF',
+  BUTTON_TEXT: '#FFFFFF',
+};
 
 export default StyleSheet.create({
-    button: {
-      backgroundColor: '#007AFF',
-      padding: 10,
-      borderRadius: 5,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    text: {
-      color: '#FFFFFF',
-      fontSize: 16,
-      fontWeight: 'bold',
-    },
-  });
+  button: {
+    alignItems: 'center',
+    backgroundColor: COLORS.BUTTON_BACKGROUND,
+    borderRadius: 5,
+    justifyContent: 'center',
+    padding: 10,
+  },
+  text: {
+    color: COLORS.BUTTON_TEXT,
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+});

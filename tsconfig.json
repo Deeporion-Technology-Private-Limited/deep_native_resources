@@ -5,6 +5,7 @@
     "jsx": "react-native",
     "lib": ["es2017"],
     "skipLibCheck": true,
+    "types": ["react-native", "jest"],
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -20,6 +21,14 @@
     "node_modules",
     "babel.config.js",
     "metro.config.js",
-    "jest.config.js"
+    "jest.config.js",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.spec.ts",
+    "**/*.spec.tsx",
+    "lib/**/*",
+    "**/*config.js",
+    ".eslintrc.js"
   ]
+  // ignorePatterns  we can add files which we want to ignore from eslint
 }

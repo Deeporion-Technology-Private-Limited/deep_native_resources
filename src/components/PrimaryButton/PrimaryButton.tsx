@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet, TouchableOpacityProps } from 'react-native';
+import { TouchableOpacity, Text, TouchableOpacityProps } from 'react-native';
 import styles from './style';
 
 interface PrimaryButtonProps extends TouchableOpacityProps {
@@ -13,7 +13,5 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({ title, style, ...rest }) 
     </TouchableOpacity>
   );
 };
-
-
 
 export default PrimaryButton;

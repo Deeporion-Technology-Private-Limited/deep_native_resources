@@ -1,26 +1,26 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-    container: {
-      marginVertical: 10,
-    },
-    label: {
-      marginBottom: 5,
-      fontSize: 16,
-      color: '#333',
-    },
-    input: {
-      borderWidth: 1,
-      borderColor: '#ccc',
-      padding: 10,
-      borderRadius: 5,
-    },
-    errorInput: {
-      borderColor: 'red',
-    },
-    errorText: {
-      marginTop: 5,
-      color: 'red',
-      fontSize: 12,
-    },
-  });
+  container: {
+    marginVertical: 10,
+  },
+  errorInput: {
+    borderColor: 'red',
+  },
+  errorText: {
+    color: 'red',
+    fontSize: 12,
+    marginTop: 5,
+  },
+  input: {
+    borderColor: '#ccc',
+    borderRadius: 5,
+    borderWidth: 1,
+    padding: 10,
+  },
+  label: {
+    color: '#333',
+    fontSize: 16,
+    marginBottom: 5,
+  },
+});
