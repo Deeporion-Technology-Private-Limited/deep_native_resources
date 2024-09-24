@@ -1,5 +1,5 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React from 'react';
+import * as React from 'react';
 import { SplashScreenProps } from './utils';
 
 const SplashScreen: React.FC<SplashScreenProps> = ({

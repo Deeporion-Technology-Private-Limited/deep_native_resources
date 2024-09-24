@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Modal as RNModal, View, TouchableOpacity, Text, ModalProps } from 'react-native';
 import styles from './styles';
 

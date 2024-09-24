@@ -1,7 +1,8 @@
 // ProgressBar.tsx
-import React, { useEffect, useRef } from 'react';
+import * as React from 'react';
 import { View, Text, Animated } from 'react-native';
 import styles from './styles';
+import { useRef } from 'react';
 
 interface ProgressBarProps {
   progress: number;
@@ -24,7 +25,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
 }) => {
   const animatedValue = useRef(new Animated.Value(0)).current;
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (animated) {
       Animated.timing(animatedValue, {
         toValue: progress,

@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import * as React from 'react';
 import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 import styles from './styles';
+import { useState } from 'react';
 interface DropdownItem {
   label: string;
   value: string | number;
