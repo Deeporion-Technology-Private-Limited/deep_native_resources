@@ -27,16 +27,22 @@ const SplashScreen: React.FC<SplashScreenProps> = ({
 };
 
 export default SplashScreen;
+export const COLORS = {
+  backgroundColor: '#007bff',
+  text: '#FFFFFF',
+  Black: '#000',
+  White: '#FFFFFF',
+};
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#007bff',
+    backgroundColor: COLORS.backgroundColor,
     borderRadius: 5,
     paddingHorizontal: 20,
     paddingVertical: 10,
   },
   buttonText: {
-    color: '#fff',
+    color: COLORS.White,
     fontSize: 16,
   },
   container: {
@@ -52,7 +58,7 @@ const styles = StyleSheet.create({
     // borderColor:"red",
   },
   label: {
-    color: 'black',
+    color: COLORS.Black,
     fontSize: 18,
     marginBottom: 20,
   },
