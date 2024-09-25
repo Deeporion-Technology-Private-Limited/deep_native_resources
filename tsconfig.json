@@ -33,6 +33,8 @@
     "lib/**/*",
     "**/*config.js",
     ".eslintrc.js",
-    "**/__tests__/*"
+    "**/__tests__/*",
+    "index.js",
+   " App.tsx"
   ]
 }

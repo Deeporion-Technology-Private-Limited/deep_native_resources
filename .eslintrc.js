@@ -48,5 +48,7 @@ module.exports = {
     'lib/**/*',
     '**/*config.js',
     '.eslintrc.js',
+    'index.js',
+    'App.tsx',
   ],
 };
