@@ -1,64 +1,141 @@
-// ProgressBar.tsx
+/* eslint-disable react-native/no-inline-styles */
 import * as React from 'react';
-import { View, Text, Animated } from 'react-native';
-import styles from './styles';
+import {
+  View,
+  Text,
+  Animated,
+  StyleProp,
+  ViewStyle,
+  TextStyle,
+  AccessibilityRole,
+} from 'react-native';
 import { useRef } from 'react';
 
 interface ProgressBarProps {
-  progress: number;
-  color?: string;
-  height?: number;
-  backgroundColor?: string;
-  animated?: boolean;
-  duration?: number;
-  label?: string;
+  progress: number; // Progress value (0-100)
+  color?: string; // Fill color
+  height?: number; // Bar height
+  backgroundColor?: string; // Track background color
+  animated?: boolean; // Enable animation
+  duration?: number; // Animation duration
+  label?: string; // Optional label
+  showPercentage?: boolean; // Show percentage text
+  indeterminate?: boolean; // Indeterminate state (loader mode)
+  borderRadius?: number; // Rounded corners
+  trackColor?: string; // Color of the unfilled track
+  containerStyle?: StyleProp<ViewStyle>; // Style for the container
+  labelStyle?: StyleProp<TextStyle>; // Style for label text
+  progressTextStyle?: StyleProp<TextStyle>; // Style for percentage text
+  accessibilityRole?: AccessibilityRole; // Accessibility role (e.g., progressbar)
+  minValue?: number; // Minimum value of progress bar (default 0)
+  maxValue?: number; // Maximum value of progress bar (default 100)
+  showLabelAbove?: boolean; // Whether to show label above or beside progress bar
 }
 
 const ProgressBar: React.FC<ProgressBarProps> = ({
-  progress,
+  progress = 0,
   color = '#3498db',
   height = 10,
-  backgroundColor = '#ecf0f1',
+  //backgroundColor = '#ecf0f1',
   animated = true,
   duration = 500,
   label,
+  showPercentage = true,
+  indeterminate = false,
+  borderRadius = 5,
+  trackColor = '#dcdcdc',
+  containerStyle,
+  labelStyle,
+  progressTextStyle,
+  accessibilityRole = 'progressbar',
+  minValue = 0,
+  maxValue = 100,
+  showLabelAbove = true,
 }) => {
   const animatedValue = useRef(new Animated.Value(0)).current;
 
+  // Clamp progress between minValue and maxValue
+  const clampedProgress = Math.min(Math.max(progress, minValue), maxValue);
+
+  // Animated or static update of progress bar width
   React.useEffect(() => {
-    if (animated) {
-      Animated.timing(animatedValue, {
-        toValue: progress,
-        duration: duration,
-        useNativeDriver: false,
-      }).start();
-    } else {
-      animatedValue.setValue(progress);
+    if (!indeterminate) {
+      if (animated) {
+        Animated.timing(animatedValue, {
+          toValue: clampedProgress,
+          duration: duration,
+          useNativeDriver: false,
+        }).start();
+      } else {
+        animatedValue.setValue(clampedProgress);
+      }
     }
-  }, [progress, animated, duration, animatedValue]);
+  }, [clampedProgress, animated, duration, animatedValue, indeterminate]);
+
+  // Animated indeterminate loader
+  const startIndeterminateAnimation = () => {
+    if (indeterminate) {
+      Animated.loop(
+        Animated.timing(animatedValue, {
+          toValue: 1,
+          duration: 1500,
+          useNativeDriver: false,
+        }),
+      ).start();
+    }
+  };
+
+  React.useEffect(() => {
+    if (indeterminate) {
+      startIndeterminateAnimation();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [indeterminate]);
 
   const width = animatedValue.interpolate({
-    inputRange: [0, 100],
+    inputRange: [minValue, maxValue],
+    outputRange: ['0%', '100%'],
+    extrapolate: 'clamp',
+  });
+
+  const indeterminateWidth = animatedValue.interpolate({
+    inputRange: [0, 1],
     outputRange: ['0%', '100%'],
     extrapolate: 'clamp',
   });
 
   return (
-    <View style={styles.container}>
-      {label && <Text style={styles.label}>{label}</Text>}
-      <View style={[styles.progressBackground, { backgroundColor, height }]}>
-        <Animated.View
-          style={[
-            styles.progressFill,
-            {
+    <View style={[{ marginVertical: 10 }, containerStyle]} accessibilityRole={accessibilityRole}>
+      {showLabelAbove && label && (
+        <Text style={[{ marginBottom: 5, fontSize: 14 }, labelStyle]}>{label}</Text>
+      )}
+      <View style={{ backgroundColor: trackColor, height, borderRadius, overflow: 'hidden' }}>
+        {indeterminate ? (
+          <Animated.View
+            style={{
+              backgroundColor: color,
+              width: indeterminateWidth,
+              height,
+              borderRadius,
+            }}
+          />
+        ) : (
+          <Animated.View
+            style={{
               backgroundColor: color,
               width,
               height,
-            },
-          ]}
-        />
+              borderRadius,
+            }}
+          />
+        )}
       </View>
-      <Text style={styles.progressText}>{`${Math.round(progress)}%`}</Text>
+      {!showLabelAbove && label && <Text style={[{ marginLeft: 10 }, labelStyle]}>{label}</Text>}
+      {showPercentage && !indeterminate && (
+        <Text style={[{ marginTop: 5, fontSize: 14, textAlign: 'right' }, progressTextStyle]}>
+          {`${Math.round((clampedProgress / maxValue) * 100)}%`}
+        </Text>
+      )}
     </View>
   );
 };
@@ -80,11 +157,17 @@ const App = () => {
     <View style={{ flex: 1, justifyContent: 'center', padding: 20 }}>
       <ProgressBar 
         progress={progress} 
-        label="Download Progress"
-        color="#3498db"
+        label="File Downloading"
+        color="#1abc9c"
         height={15}
         animated={true}
         duration={300}
+        borderRadius={8}
+        trackColor="#e0e0e0"
+        showPercentage={true}
+        minValue={0}
+        maxValue={100}
+        showLabelAbove={true}
       />
       <Button title="Increment Progress" onPress={incrementProgress} />
     </View>
@@ -92,4 +175,5 @@ const App = () => {
 };
 
 export default App;
+
 */

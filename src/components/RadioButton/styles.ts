@@ -1,40 +1,57 @@
 import { StyleSheet } from 'react-native';
-
-const COLORS = {
-  PRIMARY: '#007AFF',
-  WHITE: '#FFFFFF',
-  TEXT: '#333333',
+export const COLORS = {
+  black: '#000',
 };
-
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
     flexDirection: 'row',
-    marginVertical: 8,
+    alignItems: 'center',
+    paddingVertical: 8,
   },
   radio: {
-    alignItems: 'center',
-    borderColor: COLORS.PRIMARY,
-    borderRadius: 10,
     borderWidth: 2,
-    height: 20,
+    borderRadius: 50, // Adjusted for a perfect circle
     justifyContent: 'center',
-    width: 20,
-  },
-  radioSelected: {
-    backgroundColor: COLORS.PRIMARY,
+    alignItems: 'center',
+    marginHorizontal: 8,
   },
   radioInner: {
-    backgroundColor: COLORS.WHITE,
-    borderRadius: 4,
-    height: 8,
-    width: 8,
+    borderRadius: 50, // Adjusted for a perfect circle
   },
   label: {
-    color: COLORS.TEXT,
     fontSize: 16,
-    marginLeft: 8,
+    color: COLORS.black,
   },
 });
 
 export default styles;
+/**import React, { useState } from 'react';
+import { SafeAreaView, View } from 'react-native';
+import RadioGroup from './RadioGroup';
+
+const App = () => {
+  const [selectedValue, setSelectedValue] = useState('option1');
+
+  return (
+    <SafeAreaView>
+      <View>
+        <RadioGroup
+          options={[
+            { label: 'Option 1', value: 'option1' },
+            { label: 'Option 2', value: 'option2' },
+            { label: 'Option 3', value: 'option3' },
+          ]}
+          selectedValue={selectedValue}
+          onValueChange={(value) => setSelectedValue(value)}
+          radioSize={24}
+          selectedColor="#007AFF"
+          unselectedColor="#D3D3D3"
+          labelPosition="right"
+        />
+      </View>
+    </SafeAreaView>
+  );
+};
+
+export default App;
+ */

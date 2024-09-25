@@ -1,17 +1,19 @@
-// styles.ts
 import { StyleSheet } from 'react-native';
-
-export default StyleSheet.create({
+export const COLORS = {
+  black: '#000',
+  backgroundColor: '#dcdcdc',
+};
+const styles = StyleSheet.create({
   container: {
-    width: '100%',
     marginVertical: 10,
   },
   label: {
-    fontSize: 16,
-    fontWeight: 'bold',
     marginBottom: 5,
+    fontSize: 14,
+    color: COLORS.black,
   },
   progressBackground: {
+    backgroundColor: COLORS.backgroundColor,
     borderRadius: 5,
     overflow: 'hidden',
   },
@@ -19,9 +21,11 @@ export default StyleSheet.create({
     borderRadius: 5,
   },
   progressText: {
-    fontSize: 14,
-    fontWeight: 'bold',
     marginTop: 5,
+    fontSize: 14,
+    color: COLORS.black,
     textAlign: 'right',
   },
 });
+
+export default styles;
