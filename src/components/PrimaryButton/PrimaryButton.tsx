@@ -160,3 +160,18 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
 };
 
 export default PrimaryButton;
+/*
+// Usage
+<PrimaryButton 
+  title="Press Me"
+  onPress={() => console.log('Button pressed')}
+  color={COLORS.primary}
+  size="large"
+  loading={false}
+  disabled={false}
+  icon={require('./path-to-icon.png')}
+  iconPosition="left"
+  onLongPress={() => console.log('Button long pressed')}
+  delayLongPress={500}
+  hitSlop={10}
+/>*/
