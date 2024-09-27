@@ -1,40 +1,51 @@
+// styles.ts
 import { StyleSheet } from 'react-native';
 
-const COLORS = {
-  PRIMARY: '#007AFF',
-  WHITE: '#FFFFFF',
-  TEXT: '#333333',
+// Colors defined at the top
+export const COLORS = {
+  PRIMARY: '#3498db',
+  BORDER: '#ccc',
+  CHECKMARK: '#fff',
+  UNCHECKED: '#f9f9f9',
+  LABEL: '#000',
+  ERROR: '#ff0000',
+  DISABLED: '#e0e0e0',
 };
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
     flexDirection: 'row',
-    marginVertical: 8,
+    alignItems: 'center',
+    marginVertical: 5,
   },
   box: {
-    height: 20,
-    width: 20,
-    borderWidth: 2,
-    borderColor: COLORS.PRIMARY,
-    borderRadius: 4,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  checkedBox: {
-    backgroundColor: COLORS.PRIMARY,
+    borderRadius: 3,
   },
   checkmark: {
-    width: 12,
-    height: 12,
-    borderRadius: 2,
-    backgroundColor: COLORS.WHITE,
+    width: '70%',
+    height: '70%',
   },
   label: {
     marginLeft: 8,
     fontSize: 16,
-    color: COLORS.TEXT,
+    color: COLORS.LABEL,
+  },
+  errorText: {
+    color: COLORS.ERROR,
+    fontSize: 12,
+    marginTop: 5,
   },
 });
 
 export default styles;
+/**import { Checkbox, COLORS } from 'your-library-name';
+
+// Usage
+<Checkbox
+  value={isChecked}
+  onValueChange={setIsChecked}
+  label="Custom Checkbox"
+  boxColor={COLORS.PRIMARY}
+/> */

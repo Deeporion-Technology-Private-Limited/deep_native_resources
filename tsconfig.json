@@ -35,6 +35,6 @@
     ".eslintrc.js",
     "**/__tests__/*",
     "index.js",
-   " App.tsx"
+    " App.tsx"
   ]
 }

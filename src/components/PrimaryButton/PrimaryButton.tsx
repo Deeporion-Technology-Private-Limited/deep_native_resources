@@ -79,6 +79,7 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
     styles[size],
     { backgroundColor: disabled ? COLORS.disabled : color },
     buttonStyle,
+    { width: '100%' }, // Ensure button takes 100% width
     style,
   ];
 
@@ -136,7 +137,12 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
         background={TouchableNativeFeedback.Ripple(COLORS.ripple, false)}
       >
         {gradientColors ? (
-          <LinearGradient colors={gradientColors} style={buttonStyles}>
+          <LinearGradient
+            colors={gradientColors}
+            style={buttonStyles}
+            start={{ x: 0, y: 0 }} // Start the gradient from the left
+            end={{ x: 1, y: 0 }} // End the gradient to the right (horizontal)
+          >
             {renderContent()}
           </LinearGradient>
         ) : (
@@ -149,7 +155,12 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
   return (
     <TouchableOpacity {...commonProps} style={gradientColors ? {} : buttonStyles}>
       {gradientColors ? (
-        <LinearGradient colors={gradientColors} style={buttonStyles}>
+        <LinearGradient
+          colors={gradientColors}
+          style={buttonStyles}
+          start={{ x: 0, y: 0 }} // Start the gradient from the left
+          end={{ x: 1, y: 0 }} // End the gradient to the right (horizontal)
+        >
           {renderContent()}
         </LinearGradient>
       ) : (
