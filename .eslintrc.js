@@ -33,22 +33,25 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'warn',
     'no-console': ['warn', { allow: ['warn', 'error'] }],
-    // Disable test-related linting
-    'jest/no-disabled-tests': 'off',
-    'jest/no-focused-tests': 'off',
-    'jest/no-identical-title': 'off',
-    'jest/prefer-to-have-length': 'off',
-    'jest/valid-expect': 'off',
   },
+  overrides: [
+    {
+      files: ['**/*.test.ts', '**/*.test.tsx', '**/*.spec.ts', '**/*.spec.tsx'],
+      rules: {
+        'jest/no-disabled-tests': 'off',
+        'jest/no-focused-tests': 'off',
+        'jest/no-identical-title': 'off',
+        'jest/prefer-to-have-length': 'off',
+        'jest/valid-expect': 'off',
+      },
+    },
+  ],
   ignorePatterns: [
-    '**/*.test.ts',
-    '**/*.test.tsx',
-    '**/*.spec.ts',
-    '**/*.spec.tsx',
     'lib/**/*',
     '**/*config.js',
     '.eslintrc.js',
     'index.js',
     'App.tsx',
+    'App.test.tsx',
   ],
 };

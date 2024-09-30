@@ -3,24 +3,30 @@
   "compilerOptions": {
     "strict": true,
     "jsx": "react-jsx",
-    "lib": ["es2017", "dom"],
+    "lib": ["es2020", "dom"],
     "skipLibCheck": true,
-    "types": ["react-native", "jest"],
     "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
     "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "baseUrl": ".",
     "paths": {
+      "@components/*": ["src/components/*"],
+      "@utils/*": ["src/utils/*"],
       "*": ["src/*"]
     },
-    "module": "CommonJS",
+    "module": "ESNext",
     "target": "ES6",
     "declaration": true,
-    "outDir": "./lib"
+    "outDir": "./lib",
+    "types": ["react-native", "jest"]
   },
-  "include": ["src"],
+  "include": ["src/**/*"],
   "exclude": [
     "node_modules",
     "babel.config.js",
@@ -35,6 +41,8 @@
     ".eslintrc.js",
     "**/__tests__/*",
     "index.js",
-   " App.tsx"
+    "App.tsx",
+    "App.test.tsx"
   ]
+
 }
