@@ -126,6 +126,20 @@ const ExampleScreen = () => {
   );
 };
 
+<InputField
+  label="Email Address"
+  placeholder="Enter your email"
+  inputType="email"
+  leftIcon="✉️"
+  rightIcon="✔️"
+  onLeftIconPress={() => console.log('Left icon pressed')}
+  onRightIconPress={() => console.log('Right icon pressed')}
+  validate={(text) => (text.includes('@') ? undefined : 'Invalid email')}
+  errorMessage="Please enter a valid email"
+  autoFocus={true}
+  style={{ backgroundColor: '#f0f0f0' }}
+/>
+
 export default ExampleScreen;
  * 
  */
