@@ -1,6 +1,6 @@
 {
   "name": "deep_native_resources",
-  "version": "0.1.19",
+  "version": "0.1.21",
   "description": "Your library description",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

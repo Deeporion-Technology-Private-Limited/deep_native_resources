@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 
+// Define color constants
 const COLORS = {
   BACKGROUND: '#FFFFFF',
   BORDER: '#CCCCCC',
@@ -8,8 +9,9 @@ const COLORS = {
   ITEM_ACTIVE: '#F0F0F0',
 };
 
-const styles = StyleSheet.create({
+export default StyleSheet.create({
   container: {
+    margin: 10,
     position: 'relative',
     width: '100%',
   },
@@ -28,7 +30,7 @@ const styles = StyleSheet.create({
     color: COLORS.TEXT,
   },
   arrow: {
-    fontSize: 16,
+    fontSize: 18,
     color: COLORS.TEXT,
   },
   dropdownList: {
@@ -53,6 +55,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: COLORS.TEXT,
   },
+  iconContainer: {
+    marginRight: 10,
+  },
+  searchInput: {
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.BORDER,
+  },
 });
-
-export default styles;
