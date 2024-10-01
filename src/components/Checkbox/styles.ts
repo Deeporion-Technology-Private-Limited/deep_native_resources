@@ -1,40 +1,46 @@
 import { StyleSheet } from 'react-native';
-
 const COLORS = {
   PRIMARY: '#007AFF',
   WHITE: '#FFFFFF',
   TEXT: '#333333',
 };
-
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
     flexDirection: 'row',
-    marginVertical: 8,
+    alignItems: 'center',
+    margin: 8, // Adjust spacing as needed
   },
   box: {
-    height: 20,
-    width: 20,
     borderWidth: 2,
-    borderColor: COLORS.PRIMARY,
-    borderRadius: 4,
+    borderRadius: 4, // Rounded corners
     justifyContent: 'center',
     alignItems: 'center',
+    marginRight: 8, // Space between box and label
   },
   checkedBox: {
-    backgroundColor: COLORS.PRIMARY,
+    backgroundColor: COLORS.PRIMARY, // Default background color for checked state
   },
   checkmark: {
-    width: 12,
-    height: 12,
-    borderRadius: 2,
-    backgroundColor: COLORS.WHITE,
+    width: '100%', // Adjust as needed for checkmark size
+    height: '100%', // Adjust as needed for checkmark size
+    backgroundColor: COLORS.WHITE, // Color for the checkmark
   },
   label: {
-    marginLeft: 8,
-    fontSize: 16,
-    color: COLORS.TEXT,
+    fontSize: 16, // Default font size for label
+    color: COLORS.TEXT, // Default text color
   },
 });
 
 export default styles;
+// <Checkbox
+//   checked={isChecked}
+//   onToggle={setIsChecked}
+//   label="Check me!"
+//   size={30} // Set custom size
+//   checkedColor="blue" // Set custom checked color
+//   uncheckedColor="gray" // Set custom unchecked color
+//   containerStyle={{ padding: 10 }} // Additional styles
+//   textStyle={{ color: 'black', fontWeight: 'bold' }} // Custom text styles
+//   onLongPress={() => console.log('Long pressed!')}
+//   onPress={() => console.log('Pressed!')}
+// />
