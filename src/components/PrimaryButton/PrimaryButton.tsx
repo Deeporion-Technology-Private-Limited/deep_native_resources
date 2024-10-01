@@ -34,6 +34,7 @@ interface PrimaryButtonProps {
   size?: 'small' | 'medium' | 'large';
   accessibilityLabel?: string;
   style?: StyleProp<ViewStyle>;
+  fontFamily?: string; // Added fontFamily prop
   onLongPress?: (event: GestureResponderEvent) => void;
   delayLongPress?: number;
   hitSlop?: number | { top?: number; left?: number; bottom?: number; right?: number };
@@ -54,6 +55,7 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
   size = 'medium',
   accessibilityLabel,
   style,
+  fontFamily, // Destructure fontFamily prop
   onLongPress,
   delayLongPress,
   hitSlop,
@@ -87,6 +89,7 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
     styles.text,
     styles[`${size}Text`],
     { color: disabled ? COLORS.disabledText : COLORS.text },
+    { fontFamily: fontFamily || 'Poppins-SemiBold' }, // Use dynamic fontFamily or default
     textStyle,
   ];
 
@@ -136,7 +139,12 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
         background={TouchableNativeFeedback.Ripple(COLORS.ripple, false)}
       >
         {gradientColors ? (
-          <LinearGradient colors={gradientColors} style={buttonStyles}>
+          <LinearGradient
+            colors={gradientColors}
+            start={{ x: 0, y: 0 }} // Horizontal gradient start
+            end={{ x: 1, y: 0 }} // Horizontal gradient end
+            style={buttonStyles}
+          >
             {renderContent()}
           </LinearGradient>
         ) : (
@@ -149,7 +157,12 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
   return (
     <TouchableOpacity {...commonProps} style={gradientColors ? {} : buttonStyles}>
       {gradientColors ? (
-        <LinearGradient colors={gradientColors} style={buttonStyles}>
+        <LinearGradient
+          colors={gradientColors}
+          start={{ x: 0, y: 0 }} // Horizontal gradient start
+          end={{ x: 1, y: 0 }} // Horizontal gradient end
+          style={buttonStyles}
+        >
           {renderContent()}
         </LinearGradient>
       ) : (
@@ -160,18 +173,5 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
 };
 
 export default PrimaryButton;
-/*
-// Usage
-<PrimaryButton 
-  title="Press Me"
-  onPress={() => console.log('Button pressed')}
-  color={COLORS.primary}
-  size="large"
-  loading={false}
-  disabled={false}
-  icon={require('./path-to-icon.png')}
-  iconPosition="left"
-  onLongPress={() => console.log('Button long pressed')}
-  delayLongPress={500}
-  hitSlop={10}
-/>*/
+
+/* <PrimaryButton title="Press Me" onPress={handlePress} loading={false} disabled={false} icon={require('./path-to-icon.png')} // Replace with your icon path iconPosition="left" onLongPress={handleLongPress} delayLongPress={500} hitSlop={10} gradientColors={['#FF5733', '#FFC300']} // Pass gradient colors here fontFamily="Poppins" // Dynamic font family /> */

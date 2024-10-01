@@ -1,11 +1,11 @@
 {
   "name": "deep_native_resources",
-  "version": "0.1.18",
+  "version": "0.1.19",
   "description": "Your library description",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "build": "tsc --project tsconfig.build.json",
+        "build": "tsc --project tsconfig.build.json",
     "prepare": "husky install && npm run build",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
