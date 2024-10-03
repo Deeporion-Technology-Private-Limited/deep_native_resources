@@ -116,3 +116,40 @@ const styles = StyleSheet.create({
 });
 
 export default CustomToast;
+
+// import React, { useState } from 'react';
+// import { Button, View } from 'react-native';
+// import CustomToast from './CustomToast';
+
+// const App = () => {
+//   const [toastVisible, setToastVisible] = useState(false);
+//   const [toastMessage, setToastMessage] = useState('');
+
+//   const showToast = () => {
+//     setToastMessage('This is a custom toast message!');
+//     setToastVisible(true);
+
+//     setTimeout(() => {
+//       setToastVisible(false);
+//     }, 3000); // Hide after 3 seconds
+//   };
+
+//   return (
+//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+//       <Button title="Show Toast" onPress={showToast} />
+//       <CustomToast
+//         message={toastMessage}
+//         visible={toastVisible}
+//         onClose={() => setToastVisible(false)}
+//         duration="SHORT"
+//         position="BOTTOM"
+//         backgroundColor="blue"
+//         tintColorIOS="white"
+//         titleIOS="Notification"
+//         titleColor="yellow"
+//       />
+//     </View>
+//   );
+// };
+
+// export default App;
