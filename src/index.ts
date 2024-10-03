@@ -9,3 +9,7 @@ export { default as CustomList } from './components/CustomList/CustomList';
 export { default as Dropdown } from './components/Dropdown/Dropdown';
 export { default as Model } from './components/Model/Model';
 export { default as ProgressBar } from './components/ProgressBar/ProgressBar';
+export { default as CustomButton } from './components/CustomButton/CustomButtom';
+export { default as CustomText } from './components/CustomText/CustomText';
+export { default as CustomFlatList } from './components/CustomFlatList/CustomFlatList';
+export { default as CustomModal } from './components/CustomModal/CustomModal';

@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-        "build": "tsc --project tsconfig.build.json",
+    "build": "tsc --project tsconfig.build.json",
     "prepare": "husky install && npm run build",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
