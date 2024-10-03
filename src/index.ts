@@ -15,3 +15,4 @@ export { default as CustomFlatList } from './components/CustomFlatList/CustomFla
 export { default as CustomModal } from './components/CustomModal/CustomModal';
 export { default as CustomPressable } from './components/CustomPressable/CustomPressable';
 export { default as CustomRefreshControl } from './components/CustomRefreshControl/CustomRefreshControl';
+export { default as CustomToast } from './components/CustomToast/CustomToast';
