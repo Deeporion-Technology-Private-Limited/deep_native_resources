@@ -13,3 +13,4 @@ export { default as CustomButton } from './components/CustomButton/CustomButtom'
 export { default as CustomText } from './components/CustomText/CustomText';
 export { default as CustomFlatList } from './components/CustomFlatList/CustomFlatList';
 export { default as CustomModal } from './components/CustomModal/CustomModal';
+export { default as CustomPressable } from './components/CustomPressable/CustomPressable';
