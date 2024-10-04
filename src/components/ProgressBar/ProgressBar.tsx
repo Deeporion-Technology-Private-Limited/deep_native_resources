@@ -30,6 +30,7 @@ interface ProgressBarProps {
   minValue?: number; // Minimum value of progress bar (default 0)
   maxValue?: number; // Maximum value of progress bar (default 100)
   showLabelAbove?: boolean; // Whether to show label above or beside progress bar
+  size?: 'small' | 'medium' | 'large'; //size of the progress bar
 }
 
 const ProgressBar: React.FC<ProgressBarProps> = ({
@@ -51,6 +52,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
   minValue = 0,
   maxValue = 100,
   showLabelAbove = true,
+  size = 'small',
 }) => {
   const animatedValue = useRef(new Animated.Value(0)).current;
 
@@ -103,6 +105,22 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
     outputRange: ['0%', '100%'],
     extrapolate: 'clamp',
   });
+  const sizeStyles = {
+    small: {
+      height: 10,
+      borderRadius: 5,
+    },
+    medium: {
+      height: 15,
+      borderRadius: 7,
+    },
+    large: {
+      height: 20,
+      borderRadius: 10,
+    },
+  };
+
+  const currentSize = sizeStyles[size] || sizeStyles.small;
 
   return (
     <View style={[{ marginVertical: 10 }, containerStyle]} accessibilityRole={accessibilityRole}>
@@ -115,8 +133,8 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
             style={{
               backgroundColor: color,
               width: indeterminateWidth,
-              height,
-              borderRadius,
+              height: currentSize.height,
+              borderRadius: currentSize.borderRadius,
             }}
           />
         ) : (
@@ -124,8 +142,8 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
             style={{
               backgroundColor: color,
               width,
-              height,
-              borderRadius,
+              height: currentSize.height,
+              borderRadius: currentSize.borderRadius,
             }}
           />
         )}
