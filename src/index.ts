@@ -16,3 +16,4 @@ export { default as CustomModal } from './components/CustomModal/CustomModal';
 export { default as CustomPressable } from './components/CustomPressable/CustomPressable';
 export { default as CustomRefreshControl } from './components/CustomRefreshControl/CustomRefreshControl';
 export { default as CustomToast } from './components/CustomToast/CustomToast';
+export { default as CircularLoader } from './components/CircularLoder/CircularLoader';
