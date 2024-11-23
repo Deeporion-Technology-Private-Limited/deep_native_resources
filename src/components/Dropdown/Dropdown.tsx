@@ -1,6 +1,4 @@
-import { useState } from 'react';
-import * as React from 'react';
-
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -28,13 +26,13 @@ interface DropdownProps {
   labelField?: string;
   valueField?: string;
   searchField?: string;
-  style?: StyleProp<ViewStyle>; // For dropdown container styles
-  containerStyle?: StyleProp<ViewStyle>; // For outer container styles
-  itemContainerStyle?: StyleProp<ViewStyle>; // For item container styles
-  itemTextStyle?: StyleProp<TextStyle>; // For text styles
-  placeholderStyle?: StyleProp<TextStyle>; // For placeholder text styles
-  selectedTextStyle?: StyleProp<TextStyle>; // For selected item text styles
-  iconStyle?: StyleProp<ImageStyle>; // For icon styles
+  style?: StyleProp<ViewStyle>;
+  containerStyle?: StyleProp<ViewStyle>;
+  itemContainerStyle?: StyleProp<ViewStyle>;
+  itemTextStyle?: StyleProp<TextStyle>;
+  placeholderStyle?: StyleProp<TextStyle>;
+  selectedTextStyle?: StyleProp<TextStyle>;
+  iconStyle?: StyleProp<ImageStyle>;
   iconColor?: string;
   search?: boolean;
   onChangeText?: (search: string) => void;
@@ -43,6 +41,10 @@ interface DropdownProps {
   fontFamily?: string;
   maxHeight?: number;
   searchPlaceholder?: string;
+  showDivider?: boolean; // Optional divider between items
+  customArrow?: JSX.Element; // Optional custom arrow for dropdown
+  listStyle?: StyleProp<ViewStyle>; // Optional styling for dropdown list container
+  disabled?: boolean; // Disable dropdown
 }
 
 const Dropdown: React.FC<DropdownProps> = ({
@@ -61,18 +63,25 @@ const Dropdown: React.FC<DropdownProps> = ({
   placeholderStyle,
   selectedTextStyle,
   iconStyle,
-  //iconColor = '#000',
   renderLeftIcon,
   renderRightIcon,
   fontFamily,
   maxHeight = 200,
   searchPlaceholder = 'Search...',
   onChangeText,
+  showDivider = false,
+  customArrow,
+  listStyle,
+  disabled = false,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
 
-  const toggleDropdown = () => setIsOpen(!isOpen);
+  const toggleDropdown = () => {
+    if (!disabled) {
+      setIsOpen(!isOpen);
+    }
+  };
 
   const handleSelect = (item: DropdownItem) => {
     onSelect(item);
@@ -91,15 +100,17 @@ const Dropdown: React.FC<DropdownProps> = ({
       searchTerm.toLowerCase(),
     ),
   );
+
   return (
     <View style={[styles.container, containerStyle]}>
       {/* Dropdown Header */}
       <TouchableOpacity
-        style={[styles.header, style]}
+        style={[styles.header, style, disabled && styles.disabled]}
         onPress={toggleDropdown}
         accessible
         accessibilityLabel="Dropdown"
         accessibilityHint={isOpen ? 'Closes the dropdown' : 'Opens the dropdown'}
+        disabled={disabled}
       >
         {renderLeftIcon && renderLeftIcon(isOpen)}
         <Text
@@ -108,20 +119,18 @@ const Dropdown: React.FC<DropdownProps> = ({
             placeholderStyle,
             selectedItem && selectedTextStyle,
             { fontFamily },
+            disabled && styles.disabledText,
           ]}
         >
           {selectedItem ? (selectedItem[labelField as keyof DropdownItem] as string) : placeholder}
         </Text>
-        {renderRightIcon ? (
-          renderRightIcon(isOpen)
-        ) : (
-          <Text style={styles.arrow}>{isOpen ? '▲' : '▼'}</Text>
-        )}
+        {customArrow ? customArrow : <Text style={styles.arrow}>{isOpen ? '▲' : '▼'}</Text>}
+        {renderRightIcon && renderRightIcon(isOpen)}
       </TouchableOpacity>
 
       {/* Dropdown List */}
       {isOpen && (
-        <View style={[styles.dropdownList, { maxHeight }]}>
+        <View style={[styles.dropdownList, { maxHeight }, listStyle]}>
           {search && (
             <TextInput
               style={styles.searchInput}
@@ -146,11 +155,11 @@ const Dropdown: React.FC<DropdownProps> = ({
                 <Text style={[styles.itemText, itemTextStyle, { fontFamily }]}>
                   {item[labelField as keyof DropdownItem]}
                 </Text>
+                {showDivider && <View style={styles.divider} />}
               </TouchableOpacity>
             )}
-            keyExtractor={
-              (item: DropdownItem) =>
-                item[valueField as keyof DropdownItem]?.toString() || 'unknown-key' // Fallback to a string
+            keyExtractor={(item: DropdownItem) =>
+              item[valueField as keyof DropdownItem]?.toString() || 'unknown-key'
             }
           />
         </View>
@@ -161,25 +170,29 @@ const Dropdown: React.FC<DropdownProps> = ({
 
 export default Dropdown;
 
-/* <Dropdown
-items={items}
-onSelect={handleSelect}
-selectedItem={selectedItem}
-placeholder="Select a color"
-containerStyle={styles.container}
-itemContainerStyle={{ backgroundColor: '#e0e0e0' }}
-itemTextStyle={{ color: '#fff' }}
-placeholderStyle={{ color: '#888' }}
-selectedTextStyle={{ fontWeight: 'bold' }}
-/> */
-
-/* <Dropdown
-items={items}
-onSelect={handleSelect}
-selectedItem={selectedItem}
-placeholder="Select a fruit"
-search={true}
-searchPlaceholder="Search fruits..."
-containerStyle={styles.container}
-itemTextStyle={styles.itemText}
-/> */
+// Explanation of Changes:
+// showDivider prop: This allows you to display a divider between items in the dropdown.
+// customArrow prop: You can pass a custom arrow component to replace the default "▲" and "▼".
+// disabled prop: This makes the dropdown non-interactive if set to true. Useful for preventing user selection when the dropdown is disabled.
+// listStyle prop: Provides the ability to customize the dropdown list container's style (e.g., setting padding, border-radius, etc.).
+// fontFamily: Allows for a custom font throughout the dropdown, with fallback to system font if not specified.
+// Accessibility: Ensured better screen reader support by adding accessibilityLabel and accessibilityHint to relevant elements.
+// Example Usage:
+// tsx
+// Copy code
+// <Dropdown
+//   items={items}
+//   onSelect={handleSelect}
+//   selectedItem={selectedItem}
+//   placeholder="Select a color"
+//   containerStyle={styles.container}
+//   itemContainerStyle={{ backgroundColor: '#e0e0e0' }}
+//   itemTextStyle={{ color: '#fff' }}
+//   placeholderStyle={{ color: '#888' }}
+//   selectedTextStyle={{ fontWeight: 'bold' }}
+//   customArrow={<MyCustomArrow />} // Use a custom arrow if needed
+//   showDivider={true} // Display dividers between items
+//   disabled={false} // Disable dropdown if needed
+//   search={true} // Enable search functionality
+//   searchPlaceholder="Search colors..."
+// />

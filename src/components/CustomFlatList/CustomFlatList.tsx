@@ -1,16 +1,18 @@
-import * as React from 'react';
-import { FlatList, ListRenderItemInfo, ViewStyle } from 'react-native';
+import React from 'react';
+import { FlatList, View, Text, ViewStyle, StyleSheet, ListRenderItemInfo } from 'react-native';
 
 interface FlatListProps<T> {
   data: T[];
   renderItem: (info: ListRenderItemInfo<T>) => JSX.Element;
   itemSeparatorComponent?: React.ComponentType | null;
-  listEmptyComponent?: React.ComponentType | null;
-  listFooterComponent?: React.ComponentType | null;
+  listEmptyComponent?: (() => JSX.Element) | null;
+  listFooterComponent?: (() => JSX.Element) | null;
   listFooterComponentStyle?: ViewStyle;
-  listHeaderComponent?: React.ComponentType | null;
+  listHeaderComponent?: (() => JSX.Element) | null;
   listHeaderComponentStyle?: ViewStyle;
   columnWrapperStyle?: ViewStyle;
+  flatListStyle?: ViewStyle;
+  itemStyle?: ViewStyle;
   extraData?: any;
   getItemLayout?: (
     data: ArrayLike<T> | null | undefined,
@@ -22,13 +24,19 @@ interface FlatListProps<T> {
   inverted?: boolean;
   keyExtractor: (item: T, index: number) => string;
   numColumns?: number;
+  onEndReached?: () => void;
+  onEndReachedThreshold?: number;
   onRefresh?: () => void;
-  onViewableItemsChanged?: (info: { viewableItems: Array<any>; changed: Array<any> }) => void;
-  progressViewOffset?: number;
   refreshing?: boolean;
-  removeClippedSubviews?: boolean;
-  viewabilityConfig?: object;
-  viewabilityConfigCallbackPairs?: Array<any>;
+  loadingIndicator?: React.ReactNode;
+  isLoading?: boolean;
+  theme?: {
+    backgroundColor?: string;
+    separatorColor?: string;
+    itemTextColor?: string;
+  };
+  accessibilityLabel?: string;
+  accessible?: boolean;
 }
 
 const CustomFlatList = <T,>({
@@ -41,6 +49,8 @@ const CustomFlatList = <T,>({
   listHeaderComponent: ListHeaderComponent,
   listHeaderComponentStyle,
   columnWrapperStyle,
+  flatListStyle,
+  itemStyle,
   extraData,
   getItemLayout,
   horizontal,
@@ -49,25 +59,40 @@ const CustomFlatList = <T,>({
   inverted,
   keyExtractor,
   numColumns,
+  onEndReached,
+  onEndReachedThreshold,
   onRefresh,
-  onViewableItemsChanged,
-  progressViewOffset,
   refreshing,
-  removeClippedSubviews,
-  viewabilityConfig,
-  viewabilityConfigCallbackPairs,
+  loadingIndicator,
+  isLoading,
+  theme,
+  accessibilityLabel,
+  accessible,
 }: FlatListProps<T>) => {
   return (
     <FlatList
       data={data}
-      renderItem={renderItem}
-      ItemSeparatorComponent={ItemSeparatorComponent || null} // Check for undefined or null
-      ListEmptyComponent={ListEmptyComponent || null}
-      ListFooterComponent={ListFooterComponent || null}
+      renderItem={info => (
+        <View style={[styles.defaultItemStyle, itemStyle]}>{renderItem(info)}</View>
+      )}
+      ItemSeparatorComponent={
+        ItemSeparatorComponent ||
+        (() =>
+          theme?.separatorColor ? (
+            <View style={[styles.separator, { backgroundColor: theme.separatorColor }]} />
+          ) : null)
+      }
+      ListEmptyComponent={ListEmptyComponent || (() => <Text>No Data</Text>)}
+      ListFooterComponent={isLoading ? loadingIndicator : ListFooterComponent || null}
       ListFooterComponentStyle={listFooterComponentStyle}
       ListHeaderComponent={ListHeaderComponent || null}
       ListHeaderComponentStyle={listHeaderComponentStyle}
       columnWrapperStyle={columnWrapperStyle}
+      style={[
+        styles.defaultFlatListStyle,
+        flatListStyle,
+        { backgroundColor: theme?.backgroundColor },
+      ]}
       extraData={extraData}
       getItemLayout={getItemLayout}
       horizontal={horizontal}
@@ -76,15 +101,49 @@ const CustomFlatList = <T,>({
       inverted={inverted}
       keyExtractor={keyExtractor}
       numColumns={numColumns}
+      onEndReached={onEndReached}
+      onEndReachedThreshold={onEndReachedThreshold}
       onRefresh={onRefresh}
-      onViewableItemsChanged={onViewableItemsChanged}
-      progressViewOffset={progressViewOffset}
       refreshing={refreshing}
-      removeClippedSubviews={removeClippedSubviews}
-      viewabilityConfig={viewabilityConfig}
-      viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs}
+      accessible={accessible}
+      accessibilityLabel={accessibilityLabel}
     />
   );
 };
+export const colors = {
+  white: '#FFFFFF',
+  black: '#000000',
+  lightShadow: '#e0e0e0',
+};
+const styles = StyleSheet.create({
+  defaultFlatListStyle: {
+    flex: 1,
+  },
+  defaultItemStyle: {
+    padding: 10,
+  },
+  separator: {
+    height: 1,
+    backgroundColor: colors.lightShadow,
+  },
+});
 
 export default CustomFlatList;
+
+{
+  /* <CustomFlatList
+data={data}
+renderItem={renderItem}
+keyExtractor={(item, index) => `${item}-${index}`}
+listEmptyComponent={() => <Text>No items found!</Text>}
+loadingIndicator={<Text>Loading...</Text>}
+isLoading={false}
+theme={{
+  backgroundColor: '#f9f9f9',
+  separatorColor: '#ccc',
+  itemTextColor: '#333',
+}}
+flatListStyle={{ margin: 10 }}
+itemStyle={{ padding: 15, backgroundColor: '#fff' }}
+/> */
+}

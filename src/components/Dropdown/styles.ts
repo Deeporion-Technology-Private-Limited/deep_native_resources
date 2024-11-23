@@ -7,6 +7,8 @@ const COLORS = {
   TEXT: '#333333',
   PLACEHOLDER: '#999999',
   ITEM_ACTIVE: '#F0F0F0',
+  lightGray: '#a0a0a0',
+  dividerColor: '#e0e0e0',
 };
 
 export default StyleSheet.create({
@@ -14,6 +16,13 @@ export default StyleSheet.create({
     margin: 10,
     position: 'relative',
     width: '100%',
+  },
+  disabledText: {
+    color: COLORS.lightGray, // Light gray color for disabled text
+    fontStyle: 'italic', // Optional: italicize text when disabled
+  },
+  disabled: {
+    backgroundColor: COLORS.ITEM_ACTIVE,
   },
   header: {
     flexDirection: 'row',
@@ -28,6 +37,11 @@ export default StyleSheet.create({
   headerText: {
     fontSize: 16,
     color: COLORS.TEXT,
+  },
+  divider: {
+    height: 1,
+    backgroundColor: COLORS.dividerColor, // Light gray divider color
+    marginVertical: 5, // Space between items
   },
   arrow: {
     fontSize: 18,

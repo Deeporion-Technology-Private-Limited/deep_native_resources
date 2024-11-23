@@ -1,29 +1,29 @@
-import { useState, useCallback } from 'react';
-import * as React from 'react';
+import React, { useState, useCallback } from 'react';
 import {
   Text,
-  View,
   TextInput,
   TextInputProps,
   TouchableOpacity,
+  View,
   TextStyle,
   ViewStyle,
 } from 'react-native';
-import { COLORS, styles } from './style'; // Ensure that you have a proper styles and colors configuration
+import { COLORS, styles } from './style'; // Ensure styles and colors are defined elsewhere
 
 interface InputFieldProps extends TextInputProps {
-  label?: string; // Optional label for the input field
+  label?: string; // Label for the input field
   labelStyle?: TextStyle; // Custom style for the label
-  errorMessage?: string; // Error message displayed under the input
-  validate?: (text: string) => string | undefined; // Validation function to check input value
-  inputType?: 'text' | 'password' | 'email' | 'phone' | 'address'; // Type of input
-  leftIcon?: string; // Optional left icon
-  rightIcon?: string; // Optional right icon
-  onLeftIconPress?: () => void; // Callback for left icon press
-  onRightIconPress?: () => void; // Callback for right icon press
+  errorMessage?: string; // Optional error message to display under the input
+  validate?: (text: string) => string | undefined; // Validation function to validate input
+  inputType?: 'text' | 'password' | 'email' | 'phone' | 'address'; // Input field type
+  leftIcon?: string; // Left icon to display inside input field
+  rightIcon?: string; // Right icon to display inside input field
+  onLeftIconPress?: () => void; // Function to call when left icon is pressed
+  onRightIconPress?: () => void; // Function to call when right icon is pressed
   containerStyle?: ViewStyle; // Custom container style
-  inputContainerStyle?: ViewStyle; // Custom style for the input field container
-  errorTextStyle?: TextStyle; // Custom style for the error text
+  inputContainerStyle?: ViewStyle; // Custom input container style
+  errorTextStyle?: TextStyle; // Custom error message style
+  secureTextEntryToggleIcon?: boolean; // Show/hide password visibility toggle
 }
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -41,7 +41,8 @@ const InputField: React.FC<InputFieldProps> = ({
   containerStyle,
   inputContainerStyle,
   errorTextStyle,
-  ...rest // Passing all other props like placeholder, autoFocus, maxLength, etc.
+  secureTextEntryToggleIcon = true,
+  ...rest
 }) => {
   const [value, setValue] = useState('');
   const [error, setError] = useState<string | undefined>(errorMessage);
@@ -54,7 +55,7 @@ const InputField: React.FC<InputFieldProps> = ({
         const validationError = validate(text);
         setError(validationError);
       }
-      onChangeText?.(text); // Forwarding the onChangeText callback to the parent
+      onChangeText?.(text); // Forward the onChangeText callback to the parent component
     },
     [validate, onChangeText],
   );
@@ -69,21 +70,21 @@ const InputField: React.FC<InputFieldProps> = ({
         return 'email-address';
       case 'phone':
         return 'phone-pad';
+      case 'address':
+        return 'default'; // Adjust if you want to use a different keyboard type for addresses
       default:
         return 'default';
     }
   }, [inputType]);
 
   const renderIcon = useCallback(
-    (icon: string, position: 'left' | 'right', onPress?: () => void) => {
-      return (
-        <TouchableOpacity onPress={onPress} disabled={!onPress} style={styles.iconContainer}>
-          <Text style={[styles.icon, position === 'left' ? styles.leftIcon : styles.rightIcon]}>
-            {icon}
-          </Text>
-        </TouchableOpacity>
-      );
-    },
+    (icon: string, position: 'left' | 'right', onPress?: () => void) => (
+      <TouchableOpacity onPress={onPress} disabled={!onPress} style={styles.iconContainer}>
+        <Text style={[styles.icon, position === 'left' ? styles.leftIcon : styles.rightIcon]}>
+          {icon}
+        </Text>
+      </TouchableOpacity>
+    ),
     [],
   );
 
@@ -92,32 +93,33 @@ const InputField: React.FC<InputFieldProps> = ({
       {/* Label */}
       {label && <Text style={[styles.label, labelStyle]}>{label}</Text>}
 
+      {/* Input container with icons */}
       <View style={[styles.inputContainer, inputContainerStyle]}>
         {/* Left Icon */}
         {leftIcon && renderIcon(leftIcon, 'left', onLeftIconPress)}
 
-        {/* Text Input */}
+        {/* TextInput */}
         <TextInput
           value={value}
           onChangeText={handleChangeText}
           style={[
             styles.input,
             style,
-            error && styles.errorInput, // Error style
+            error && styles.errorInput, // Apply error style if error exists
             leftIcon && styles.inputWithLeftIcon,
             rightIcon && styles.inputWithRightIcon,
           ]}
           placeholderTextColor={COLORS.placeholder}
           secureTextEntry={secureTextEntry}
           keyboardType={getKeyboardType()}
-          {...rest} // Forwarding all other TextInput props like placeholder, autoFocus, maxLength, etc.
+          {...rest} // Passing any other props like placeholder, autoFocus, etc.
         />
 
         {/* Right Icon */}
         {rightIcon && renderIcon(rightIcon, 'right', onRightIconPress)}
 
-        {/* Toggle for Password Visibility */}
-        {inputType === 'password' && (
+        {/* Password Visibility Toggle Icon */}
+        {inputType === 'password' && secureTextEntryToggleIcon && (
           <TouchableOpacity onPress={toggleSecureTextEntry} style={styles.eyeIcon}>
             <Text style={styles.icon}>{secureTextEntry ? '👁️' : '👁️‍🗨️'}</Text>
           </TouchableOpacity>
@@ -131,3 +133,24 @@ const InputField: React.FC<InputFieldProps> = ({
 };
 
 export default InputField;
+{
+  /* <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+<InputField
+  label="Email"
+  inputType="email"
+  placeholder="Enter your email"
+  validate={(text) => (!text.includes('@') ? 'Invalid email' : undefined)}
+  errorMessage="Please enter a valid email."
+  leftIcon="📧"
+  onLeftIconPress={() => alert('Left icon pressed')}
+/>
+
+<InputField
+  label="Password"
+  inputType="password"
+  placeholder="Enter your password"
+  secureTextEntryToggleIcon={true}
+  leftIcon="🔒"
+/>
+</View> */
+}

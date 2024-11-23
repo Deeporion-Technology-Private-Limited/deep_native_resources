@@ -1,74 +1,72 @@
 import { StyleSheet } from 'react-native';
 
 export const COLORS = {
-  label: '#000000',
-  border: '#CCCCCC',
-  errorBorder: '#FF0000',
-  errorText: '#FF0000',
-  input: '#000000',
-  placeholder: '#999999',
-  icon: '#999999',
+  textPrimary: '#333', // Dark text color
+  border: '#ccc', // Light border color
+  error: '#e74c3c', // Red color for errors
+  placeholder: '#aaa', // Placeholder text color
 };
 
 export const styles = StyleSheet.create({
   container: {
     marginVertical: 10,
+    width: '100%',
   },
   label: {
-    fontSize: 16,
-    fontWeight: '500',
+    fontSize: 14,
+    fontWeight: '600', // SemiBold
+    color: COLORS.textPrimary,
     marginBottom: 5,
-    color: COLORS.label,
   },
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     borderWidth: 1,
     borderColor: COLORS.border,
-    borderRadius: 4,
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    paddingVertical: 12,
   },
   input: {
     flex: 1,
-    padding: 10,
     fontSize: 16,
-    color: COLORS.input,
-  },
-  errorInput: {
-    borderColor: COLORS.errorBorder,
-  },
-  errorText: {
-    color: COLORS.errorText,
-    fontSize: 14,
-    marginTop: 5,
-  },
-  leftIcon: {
-    width: 20,
-    height: 20,
-    marginLeft: 10,
-  },
-  rightIcon: {
-    width: 20,
-    height: 20,
-    marginRight: 10,
+    color: COLORS.textPrimary,
+    paddingVertical: 0,
+    paddingHorizontal: 10,
   },
   inputWithLeftIcon: {
-    paddingLeft: 40,
+    paddingLeft: 30, // Extra space for left icon
   },
   inputWithRightIcon: {
-    paddingRight: 40,
+    paddingRight: 30, // Extra space for right icon
   },
-  iconContainer: {
-    padding: 10,
+  errorInput: {
+    borderColor: COLORS.error, // Highlight border in red when there's an error
   },
   icon: {
-    fontSize: 20,
-    color: COLORS.icon,
+    right: 10,
   },
-
+  errorText: {
+    fontSize: 12,
+    color: COLORS.error,
+    marginTop: 5,
+  },
+  iconContainer: {
+    position: 'absolute',
+    top: '50%',
+    transform: [{ translateY: -12 }],
+  },
+  leftIcon: {
+    left: 10,
+  },
+  rightIcon: {
+    right: 10,
+  },
   eyeIcon: {
     position: 'absolute',
+    top: '50%',
     right: 10,
-    top: 10,
+    transform: [{ translateY: -12 }],
   },
 });
 /**

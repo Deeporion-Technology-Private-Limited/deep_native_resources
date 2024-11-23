@@ -7,14 +7,42 @@ export const COLORS = {
 
 export const styles = StyleSheet.create({
   text: {
-    fontSize: 16,
-    color: COLORS.black,
+    fontFamily: 'Poppins', // Assuming you're using the Poppins font for consistency
+    fontSize: 14, // Default size
+    lineHeight: 20, // Default line height
+    color: COLORS.black, // Default text color
+    textAlign: 'left', // Default text alignment
+    letterSpacing: 0, // Default letter spacing
   },
 });
 
-// <CustomText style={{ fontWeight: 'bold' }} onPress={() => alert('Text Pressed!')}>
-//         Click me!
+// <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+//       <CustomText
+//         fontSize={20}
+//         fontWeight="bold"
+//         lineHeight={30}
+//         color="blue"
+//         onPress={() => alert('Text clicked!')}
+//       >
+//         Click me to alert!
 //       </CustomText>
-//       <CustomText selectable>
-//         This is selectable text. You can copy me!
+
+//       <CustomText
+//         style={{ marginTop: 20 }}
+//         numberOfLines={2}
+//         fontSize={16}
+//         color="red"
+//       >
+//         This is a sample text with more content that will be truncated after two lines.
 //       </CustomText>
+
+//       <CustomText
+//         style={{ marginTop: 20 }}
+//         fontSize={18}
+//         fontWeight="500"
+//         letterSpacing={1}
+//         color="green"
+//       >
+//         This text has letter spacing and is semi-bold.
+//       </CustomText>
+//     </View>
