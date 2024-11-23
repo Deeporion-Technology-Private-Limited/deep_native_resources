@@ -83,7 +83,7 @@ const CustomFlatList = <T,>({
           ) : null)
       }
       ListEmptyComponent={ListEmptyComponent || (() => <Text>No Data</Text>)}
-      ListFooterComponent={isLoading ? loadingIndicator : ListFooterComponent || null}
+      ListFooterComponent={ListFooterComponent || (isLoading ? <Text>Loading...</Text> : null)}
       ListFooterComponentStyle={listFooterComponentStyle}
       ListHeaderComponent={ListHeaderComponent || null}
       ListHeaderComponentStyle={listHeaderComponentStyle}
@@ -110,11 +110,13 @@ const CustomFlatList = <T,>({
     />
   );
 };
-export const colors = {
+
+const colors = {
   white: '#FFFFFF',
   black: '#000000',
   lightShadow: '#e0e0e0',
 };
+
 const styles = StyleSheet.create({
   defaultFlatListStyle: {
     flex: 1,
