@@ -130,8 +130,7 @@ const styles = StyleSheet.create({
 
 export default CustomFlatList;
 
-{
-  /* <CustomFlatList
+/* <CustomFlatList
 data={data}
 renderItem={renderItem}
 keyExtractor={(item, index) => `${item}-${index}`}
@@ -146,4 +145,3 @@ theme={{
 flatListStyle={{ margin: 10 }}
 itemStyle={{ padding: 15, backgroundColor: '#fff' }}
 /> */
-}
